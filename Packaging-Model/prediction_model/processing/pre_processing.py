@@ -2,20 +2,20 @@ from sklearn.base import BaseEstimator,TransformerMixin
 from config import config
 import numpy as np
 
-class MeanImputer(BaseEstimator,TransformerMixin):
+class MedianImputer(BaseEstimator,TransformerMixin):
     def __init__(self,variables=None):
         self.variables = variables
     
     def fit(self,X,y=None):
-        self.mean_dict = {}
+        self.median_dict = {}
         for col in self.variables:
-            self.mean_dict[col] = X[col].mean()
+            self.median_dict[col] = X[col].median()
         return self
     
     def transform(self,X):
         X = X.copy()
         for col in self.variables:
-            X[col].fillna(self.mean_dict[col],inplace=True)
+            X[col].fillna(self.median_dict[col],inplace=True)
         return X
 
 
