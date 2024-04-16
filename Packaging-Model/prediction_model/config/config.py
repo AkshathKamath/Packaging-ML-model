@@ -2,8 +2,8 @@ import os
 import pathlib
 # import prediction_model
 
-current_directory = os.path.dirname(os.path.realpath(__file__))
-PACKAGE_ROOT = os.path.dirname(current_directory) ## Path to root directory of prediction_model
+current_directory = os.path.dirname(os.path.realpath(__file__)) ## Path to root directory of prediction_model
+PACKAGE_ROOT = os.path.dirname(current_directory) 
 
 DATAPATH = os.path.join(PACKAGE_ROOT,'datasets') ## Path to datasets appended to og root dir
 

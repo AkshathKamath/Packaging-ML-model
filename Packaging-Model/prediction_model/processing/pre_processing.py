@@ -18,6 +18,7 @@ class MedianImputer(BaseEstimator,TransformerMixin):
             X[col].fillna(self.median_dict[col],inplace=True)
         return X
 
+##------------------------------------------------------------##
 
 class ModeImputer(BaseEstimator,TransformerMixin):
     def __init__(self,variables=None):
@@ -34,6 +35,8 @@ class ModeImputer(BaseEstimator,TransformerMixin):
         for col in self.variables:
             X[col].fillna(self.mode_dict[col],inplace=True)
         return X
+    
+##------------------------------------------------------------##
 
 class DropColumns(BaseEstimator,TransformerMixin):
     def __init__(self,variables_to_drop=None):
@@ -46,6 +49,8 @@ class DropColumns(BaseEstimator,TransformerMixin):
         X = X.copy()
         X = X.drop(columns = self.variables_to_drop)
         return X
+    
+##------------------------------------------------------------##
 
 # class DomainProcessing(BaseEstimator,TransformerMixin):
 #     def __init__(self,variable_to_modify = None, variable_to_add = None):
@@ -60,6 +65,8 @@ class DropColumns(BaseEstimator,TransformerMixin):
 #         for feature in self.variable_to_modify:
 #             X[feature] = X[feature] + X[self.variable_to_add]
 #         return X
+
+##------------------------------------------------------------##
 
 class CustomLabelEncoder(BaseEstimator,TransformerMixin):
     def __init__(self, variables=None):
@@ -77,9 +84,9 @@ class CustomLabelEncoder(BaseEstimator,TransformerMixin):
         for feature in self.variables:
             X[feature] = X[feature].map(self.label_dict[feature])
         return X
+    
+##------------------------------------------------------------##
 
-
-# Try out Log Transformation
 class LogTransforms(BaseEstimator,TransformerMixin):
     def __init__(self,variables=None):
         self.variables = variables
