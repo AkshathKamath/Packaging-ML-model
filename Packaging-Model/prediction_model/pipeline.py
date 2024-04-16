@@ -13,7 +13,7 @@ classification_pipeline = Pipeline(
         ('LabelEncoder',pp.LabelEncoder(variables = config.FEATURES_TO_ENCODE)),
         ('LogTransform',pp.LogTransformer(variables = config.LOG_FEATURES)),
         ('MinMaxScale', MinMaxScaler()),
-        ('LogisticClassifier',LogisticRegression(random_state=0))
+        ('LogisticClassifier',LogisticRegression(random_state = 0))
 
     ]
 )
