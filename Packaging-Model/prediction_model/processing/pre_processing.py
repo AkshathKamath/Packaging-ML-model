@@ -37,20 +37,6 @@ class ModeImputer(BaseEstimator,TransformerMixin):
 
 ## --------------------------------------------------------- ##
 
-class DropColumns(BaseEstimator,TransformerMixin):
-    def __init__(self,variables=None):
-        self.variables = variables
-    
-    def fit(self,X,y=None):
-        return self
-    
-    def transform(self,X):
-        X = X.copy()
-        X = X.drop(columns = self.variables)
-        return X
-
-## --------------------------------------------------------- ##
-
 class AddColumns(BaseEstimator,TransformerMixin):
     def __init__(self,col1=None, col2=None):
         self.col1 = col1
@@ -62,6 +48,20 @@ class AddColumns(BaseEstimator,TransformerMixin):
     def transform(self,X):
         X = X.copy()
         X[self.col1] = X[self.col1] + X[self.col2]
+        return X
+
+## --------------------------------------------------------- ##
+
+class DropColumns(BaseEstimator,TransformerMixin):
+    def __init__(self,variables=None):
+        self.variables = variables
+    
+    def fit(self,X,y=None):
+        return self
+    
+    def transform(self,X):
+        X = X.copy()
+        X = X.drop(columns = self.variables)
         return X
     
 ## --------------------------------------------------------- ##

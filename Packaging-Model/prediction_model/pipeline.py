@@ -8,8 +8,8 @@ classification_pipeline = Pipeline(
     [
         ('MedianImputation', pp.MedianImputer(variables = config.NUM_FEATURES)),
         ('ModeImputation',pp.ModeImputer(variables = config.CAT_FEATURES)),
-        ('DropFeatures', pp.DropColumns(variables = config.DROP_FEATURES)),
         ('AddColumns', pp.AddColumns(col1 = config.FEATURE_TO_MODIFY, col2 = config.FEATURE_TO_ADD )),
+        ('DropFeatures', pp.DropColumns(variables = config.DROP_FEATURES)),
         ('LabelEncoder',pp.LabelEncoder(variables = config.FEATURES_TO_ENCODE)),
         ('LogTransform',pp.LogTransformer(variables = config.LOG_FEATURES)),
         ('MinMaxScale', MinMaxScaler()),
