@@ -1,2 +1,5 @@
 Data-Preperation-and-Creating-Model/.ipynb_checkpoints
 Data-Preperation-and-Creating-Model/Creating-Custom-Data-Transformers.ipynb
+Packaging-Model/prediction_model/__pycache__
+Packaging-Model/prediction_model/config/__pycache__
+Packaging-Model/prediction_model/processing/__pycache__
