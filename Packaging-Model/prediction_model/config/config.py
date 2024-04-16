@@ -16,7 +16,7 @@ TARGET = 'Loan_Status' ## Target feature
 
 FEATURES = ['Gender', 'Married', 'Dependents', 'Education',
        'Self_Employed', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
-       'Loan_Amount_Term', 'Credit_History', 'Property_Area'] ## Final set of features (Loan_ID dropped)
+       'Loan_Amount_Term', 'Credit_History', 'Property_Area','CoapplicantIncome'] ## Final set of features (Loan_ID dropped)
 
 NUM_FEATURES = ['ApplicantIncome', 'LoanAmount', 'Loan_Amount_Term']
 
