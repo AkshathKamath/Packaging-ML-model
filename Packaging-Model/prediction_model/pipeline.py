@@ -1,19 +1,20 @@
 from sklearn.pipeline import Pipeline
+from config import config
+import processing.pre_processing as pp 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.linear_model import LogisticRegression
-import prediction_model.processing.pre_processing as pp
-from prediction_model.config import config
+import numpy as np
 
 classification_pipeline = Pipeline(
     [
-        ('MedianImputation', pp.MedianImputer(variables = config.NUM_FEATURES)),
-        ('ModeImputation',pp.ModeImputer(variables = config.CAT_FEATURES)),
-        ('AddColumns', pp.AddColumns(col1 = config.FEATURE_TO_MODIFY, col2 = config.FEATURE_TO_ADD )),
-        ('DropFeatures', pp.DropColumns(variables = config.DROP_FEATURES)),
-        ('LabelEncoder',pp.LabelEncoder(variables = config.FEATURES_TO_ENCODE)),
-        ('LogTransform',pp.LogTransformer(variables = config.LOG_FEATURES)),
+        # ('DomainProcessing',pp.DomainProcessing(variable_to_modify = config.FEATURE_TO_MODIFY,
+        # variable_to_add = config.FEATURE_TO_ADD)),
+        ('MeanImputation', pp.MeanImputer(variables=config.NUM_FEATURES)),
+        ('ModeImputation',pp.ModeImputer(variables=config.CAT_FEATURES)),
+        ('DropFeatures', pp.DropColumns(variables_to_drop=config.DROP_FEATURES)),
+        ('LabelEncoder',pp.CustomLabelEncoder(variables=config.FEATURES_TO_ENCODE)),
+        ('LogTransform',pp.LogTransforms(variables=config.LOG_FEATURES)),
         ('MinMaxScale', MinMaxScaler()),
-        ('LogisticClassifier',LogisticRegression(random_state = 0))
-
+        ('LogisticClassifier',LogisticRegression(random_state=0))
     ]
 )

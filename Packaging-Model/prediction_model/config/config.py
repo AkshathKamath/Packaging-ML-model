@@ -1,8 +1,9 @@
 import os
 import pathlib
-import prediction_model
+# import prediction_model
 
-PACKAGE_ROOT = pathlib.PATH(prediction_model.__file__).resolve().parent ## Path to root directory of prediction_model
+current_directory = os.path.dirname(os.path.realpath(__file__))
+PACKAGE_ROOT = os.path.dirname(current_directory) ## Path to root directory of prediction_model
 
 DATAPATH = os.path.join(PACKAGE_ROOT,'datasets') ## Path to datasets appended to og root dir
 
@@ -25,10 +26,10 @@ CAT_FEATURES = ['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed',
 ## In our case it is same as Categorical features
 FEATURES_TO_ENCODE = ['Gender', 'Married', 'Dependents', 'Education', 'Self_Employed', 'Credit_History', 'Property_Area']
 
-FEATURE_TO_MODIFY = 'ApplicantIncome' ## We add Coapplicant Income to Applicant Income in processing step
+FEATURE_TO_MODIFY = ['ApplicantIncome'] ## We add Coapplicant Income to Applicant Income in processing step
 FEATURE_TO_ADD = 'CoapplicantIncome'
 
-DROP_FEATURES = 'CoapplicantIncome' ## We drop this next
+DROP_FEATURES = ['CoapplicantIncome'] ## We drop this next
 
 LOG_FEATURES = ['ApplicantIncome', 'LoanAmount', 'Loan_Amount_Term'] ## Log transf. of these features
 

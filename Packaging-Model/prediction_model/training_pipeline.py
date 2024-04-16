@@ -1,10 +1,14 @@
 import pandas as pd
 import numpy as np 
-from prediction_model.config import config  
-from prediction_model.processing.data_handling import load_dataset,save_pipeline
-import prediction_model.processing.pre_processing as pp 
-import prediction_model.pipeline as pipe 
+from config import config  
+from processing.data_handling import load_dataset,save_pipeline
+import processing.pre_processing as pp 
+import pipeline as pipe 
+import os
 import sys
+
+file_dir = os.path.dirname(__file__)
+sys.path.append(file_dir)
 
 def model_training_saving():
     df_train = load_dataset(config.TRAIN_FILE)

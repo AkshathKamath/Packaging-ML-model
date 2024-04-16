@@ -1,23 +1,23 @@
-import numpy as np
 from sklearn.base import BaseEstimator,TransformerMixin
+from config import config
+import numpy as np
 
-class MedianImputer(BaseEstimator,TransformerMixin):
+class MeanImputer(BaseEstimator,TransformerMixin):
     def __init__(self,variables=None):
         self.variables = variables
     
     def fit(self,X,y=None):
-        self.median_dict = {}
+        self.mean_dict = {}
         for col in self.variables:
-            self.median_dict[col] = X[col].median()
+            self.mean_dict[col] = X[col].mean()
         return self
     
     def transform(self,X):
         X = X.copy()
         for col in self.variables:
-            X[col] = X[col].fillna(self.median_dict[col])
+            X[col].fillna(self.mean_dict[col],inplace=True)
         return X
-    
-## --------------------------------------------------------- ##
+
 
 class ModeImputer(BaseEstimator,TransformerMixin):
     def __init__(self,variables=None):
@@ -32,41 +32,36 @@ class ModeImputer(BaseEstimator,TransformerMixin):
     def transform(self,X):
         X = X.copy()
         for col in self.variables:
-            X[col] = X[col].fillna(self.mode_dict[col])
+            X[col].fillna(self.mode_dict[col],inplace=True)
         return X
-
-## --------------------------------------------------------- ##
-
-class AddColumns(BaseEstimator,TransformerMixin):
-    def __init__(self,col1=None, col2=None):
-        self.col1 = col1
-        self.col2 = col2
-    
-    def fit(self,X,y=None):
-        return self
-    
-    def transform(self,X):
-        X = X.copy()
-        X[self.col1] = X[self.col1] + X[self.col2]
-        return X
-
-## --------------------------------------------------------- ##
 
 class DropColumns(BaseEstimator,TransformerMixin):
-    def __init__(self,variables=None):
-        self.variables = variables
+    def __init__(self,variables_to_drop=None):
+        self.variables_to_drop = variables_to_drop
     
     def fit(self,X,y=None):
         return self
     
     def transform(self,X):
         X = X.copy()
-        X = X.drop(columns = self.variables)
+        X = X.drop(columns = self.variables_to_drop)
         return X
-    
-## --------------------------------------------------------- ##
 
-class LabelEncoder(BaseEstimator,TransformerMixin):
+# class DomainProcessing(BaseEstimator,TransformerMixin):
+#     def __init__(self,variable_to_modify = None, variable_to_add = None):
+#         self.variable_to_modify = variable_to_modify
+#         self.variable_to_add = variable_to_add
+    
+#     def fit(self,X,y=None):
+#         return self
+    
+#     def transform(self,X):
+#         X = X.copy()
+#         for feature in self.variable_to_modify:
+#             X[feature] = X[feature] + X[self.variable_to_add]
+#         return X
+
+class CustomLabelEncoder(BaseEstimator,TransformerMixin):
     def __init__(self, variables=None):
         self.variables=variables
     
@@ -83,19 +78,17 @@ class LabelEncoder(BaseEstimator,TransformerMixin):
             X[feature] = X[feature].map(self.label_dict[feature])
         return X
 
-## --------------------------------------------------------- ##
 
-class LogTransformer(BaseEstimator,TransformerMixin):
+# Try out Log Transformation
+class LogTransforms(BaseEstimator,TransformerMixin):
     def __init__(self,variables=None):
         self.variables = variables
-
+    
     def fit(self,X,y=None):
         return self
     
     def transform(self,X):
         X = X.copy()
-        X[self.variables] = np.log(X[self.variables])
+        for col in self.variables:
+            X[col] = np.log(X[col])
         return X
-    
-## --------------------------------------------------------- ##
-

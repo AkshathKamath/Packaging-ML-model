@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import joblib
-from prediction_model.config import config
+from config import config
 
 def load_dataset(data_file_name): ## To load the datsets we will pass config.TRAIN_FILE as param for train.csv
     filepath = os.path.join(config.DATAPATH, data_file_name)
