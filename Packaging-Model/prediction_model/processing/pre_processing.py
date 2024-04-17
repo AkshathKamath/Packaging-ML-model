@@ -1,5 +1,5 @@
 from sklearn.base import BaseEstimator,TransformerMixin
-from config import config
+from prediction_model.config import config
 import numpy as np
 
 class MedianImputer(BaseEstimator,TransformerMixin):

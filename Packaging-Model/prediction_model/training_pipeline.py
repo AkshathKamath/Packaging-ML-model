@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np 
-from config import config  
-from processing.data_handling import load_dataset,save_pipeline
-import processing.pre_processing as pp 
-import pipeline as pipe 
+from prediction_model.config import config  
+from prediction_model.processing.data_handling import load_dataset,save_pipeline
+import prediction_model.processing.pre_processing as pp 
+import prediction_model.pipeline as pipe 
 
 
 def model_training_saving():
