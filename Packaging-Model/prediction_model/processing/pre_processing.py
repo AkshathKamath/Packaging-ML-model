@@ -87,15 +87,15 @@ class CustomLabelEncoder(BaseEstimator,TransformerMixin):
     
 ##------------------------------------------------------------##
 
-class LogTransforms(BaseEstimator,TransformerMixin):
-    def __init__(self,variables=None):
-        self.variables = variables
+# class LogTransforms(BaseEstimator,TransformerMixin):
+#     def __init__(self,variables=None):
+#         self.variables = variables
     
-    def fit(self,X,y=None):
-        return self
+#     def fit(self,X,y=None):
+#         return self
     
-    def transform(self,X):
-        X = X.copy()
-        for col in self.variables:
-            X[col] = np.log(X[col])
-        return X
+#     def transform(self,X):
+#         X = X.copy()
+#         for col in self.variables:
+#             X[col] = np.log(X[col])
+#         return X

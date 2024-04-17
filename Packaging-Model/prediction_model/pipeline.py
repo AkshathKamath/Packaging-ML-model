@@ -13,7 +13,7 @@ classification_pipeline = Pipeline(
         ('ModeImputation',pp.ModeImputer(variables=config.CAT_FEATURES)),
         ('DropFeatures', pp.DropColumns(variables_to_drop=config.DROP_FEATURES)),
         ('LabelEncoder',pp.CustomLabelEncoder(variables=config.FEATURES_TO_ENCODE)),
-        ('LogTransform',pp.LogTransforms(variables=config.LOG_FEATURES)),
+        # ('LogTransform',pp.LogTransforms(variables=config.LOG_FEATURES)),
         ('MinMaxScale', MinMaxScaler()),
         ('LogisticClassifier',LogisticRegression(random_state=0))
     ]

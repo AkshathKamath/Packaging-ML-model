@@ -17,7 +17,7 @@ def generate_predictions():
     test_data = load_dataset(config.TEST_FILE)
     pred = classification_pipeline.predict(test_data[config.FEATURES])
     output = np.where(pred==1,'Y','N')
-    print(output)
+    # print(output)
     #result = {"Predictions":output}
     return output
 
